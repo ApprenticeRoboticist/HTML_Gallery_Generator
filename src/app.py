@@ -48,7 +48,7 @@ def main():
 
     # Layout
     # step1
-    btn1 = Button(upper_frame, text="wybierz lokalizację", command=set_dir)
+    btn1 = Button(upper_frame, text="wybierz lokalizację", command=lambda: [set_dir(), btn2.config(state=NORMAL)])
     btn1.pack(padx=15, side=LEFT)
 
     lbl1 = Label(upper_frame, width=45, height=2, bg='SlateGray2', textvariable=folder_path)
@@ -61,6 +61,7 @@ def main():
 
     btn2 = Button(middle_frame, text="TAK", height=1, width=20, fg="black", command=rename, state=DISABLED)
     btn2.pack(padx=30, side=LEFT)
+    #btn2.config(state=NORMAL)
 
     # super motywujacy obrazek
     my_img = ImageTk.PhotoImage(Image.open("images/nosacz.jpg"))
