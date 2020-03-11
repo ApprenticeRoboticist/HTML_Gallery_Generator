@@ -1,6 +1,6 @@
 import os
 from tkinter import *
-from tkinter import messagebox, filedialog
+from tkinter import messagebox, filedialog, scrolledtext
 from tkinter.ttk import Combobox
 from PIL import ImageTk, Image
 
@@ -10,10 +10,13 @@ folder_path = None
 def set_dir():
     # pobiera i zmienia sciezke lokalizacji plikow
     global folder_path
-    filename = filedialog.askdirectory()
-    folder_path.set(filename)
-    os.chdir(folder_path.get())
-    print(os.getcwd())
+    try:
+        filename = filedialog.askdirectory()
+        folder_path.set(filename)
+        os.chdir(folder_path.get())
+        print(os.getcwd())
+    except OSError:
+        pass
 
 
 def rename():
@@ -27,6 +30,16 @@ def rename():
             i += 1
     except:
         messagebox.showinfo("Błąd", "Zdjęcia zostały już wcześniej ponumerowane!")
+
+
+def add_value(chapter_list, value):
+    chapter_list.append(value)
+    print(chapter_list)
+
+
+def delete_value(chapter_list):
+    del chapter_list[-1]
+    print(chapter_list)
 
 
 def main():
@@ -76,17 +89,18 @@ def main():
     combo['values'] = (1, 2, 3, 4, 5, 6, 7, 8)
     combo.current(0)
     combo.pack(side=RIGHT, padx=25, pady=15)
+    value_list = []
 
     mini_frame2.pack(side=TOP)
 
-    btn3 = Button(mini_frame2, text="Dodaj krok", width=15, relief=GROOVE)
+    btn3 = Button(mini_frame2, text="Dodaj krok", width=15, relief=GROOVE, command=lambda: add_value(value_list, combo.get()))
     btn3.pack(side=LEFT, padx=22, pady=5)
-    btn4 = Button(mini_frame2, text="Usuń poprzedni", width=15, relief=GROOVE)
+    btn4 = Button(mini_frame2, text="Usuń poprzedni", width=15, relief=GROOVE, command=lambda: delete_value(value_list))
     btn4.pack(side=LEFT, padx=22, pady=5)
     btn5 = Button(mini_frame2, text="Usuń wszystkie", width=15, relief=GROOVE)
     btn5.pack(side=LEFT, padx=22, pady=5)
 
-    txt = Text(lower_frame, width=40, height=7)
+    txt = scrolledtext.ScrolledText(lower_frame, width=40, height=12, state=DISABLED)
     txt.pack(side=TOP, padx=15, pady=10)
     txt.insert(INSERT, "Co jest kurwa?")
 
