@@ -26,11 +26,12 @@ def rename():
 
     try:
         for filename in os.listdir(os.getcwd()):
-            destined_name = str(i) + ".jpg"
-            source = filename
+            if filename.endswith(".jpg"):
+                destined_name = str(i) + ".jpg"
+                source = filename
 
-            os.rename(source, destined_name)
-            i += 1
+                os.rename(source, destined_name)
+                i += 1
     except FileExistsError:
         messagebox.showinfo("Błąd", "Zdjęcia zostały już wcześniej ponumerowane!")
 
@@ -63,6 +64,62 @@ def clear_all(chapter_list):
     print(chapter_list)
 
 
+def beginning_html():
+    new_html = open(f"{title}.html", 'w')
+    new_html.write(f"""<html>
+    <head>
+    <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-2">
+    <title>{title}</title>
+    <!-- Piotr Jan Adamiec  -->
+    </head>
+    <body style="font-family: Verdana; font-size: 10pt">
+    <p><b><font face="Arial" size="7">{title}</font></b></p>
+    """)
+    new_html.close()
+
+
+def filling_html(list):
+    doc = open(f"{title}.html", 'a')
+    ilosc_krokow = len(list)
+    print(f"Ilość kroków w tej instrukcji wynosi: {ilosc_krokow}.")
+    i = 1
+    list_iter = 0  # numer indeksu tablicy (krok intrukcji)
+    photo_count = 1  # numer aktualnie wklejanego zdjecia (niezależny od kroku)
+
+    while i <= ilosc_krokow:  # +1 bo i zaczyna sie od i a lista indeksowana jest od 0
+
+        if i == 1:
+            doc.write(f"""  <p><b><font face="Arial" size="7">{i}</font></b></p>\n""")
+            for x in range(1, list[list_iter]+1):
+                doc.write(f"""          <p><img border="1" src="{photo_count}.jpg" width="700"></p>\n""")
+                print(f"krok: {i} photo: {photo_count}")
+                photo_count += 1
+                time.sleep(0.1)
+        else:
+            doc.write(f"""
+    <hr>
+        <p><b><font face="Arial" size="7">{i}</font></b></p>\n""")
+            for x in range(1, list[list_iter]+1):
+                doc.write(f"""          <p><img border="1" src="{photo_count}.jpg" width="700"></p>\n""")
+                print(f"krok: {i} photo: {photo_count}")
+                photo_count += 1
+                time.sleep(0.1)
+
+        i += 1
+        list_iter += 1
+
+    doc.close()
+
+
+def ending_html():
+    doc = open(f"{title}.html", 'a')
+    doc.write(f"""
+    </body>
+    <!-- Autor Piotr Adamiec -->
+</html> """)
+    doc.close()
+
+
 def main():
     main_window = Tk()
 
@@ -87,9 +144,10 @@ def main():
     # zmienne globalne
     global folder_path
     folder_path = StringVar()
+    global title
+    title = ""
 
     # zmienne
-    title = ""
     value_list = []
 
     # LAYOUT
@@ -125,9 +183,9 @@ def main():
     en1 = Entry(middle2_mini_frame, width=35, textvariable=title, state=DISABLED)
     en1.pack(side=RIGHT, padx=25, pady=5)
     # Button 3
-    btn3 = Button(middle_frame2, text="Zatwierdź nazwę", height=1, width=20, fg="black",
-                  command=lambda: [btn3.config(state=DISABLED), get_name(en1.get()), en1.config(state=DISABLED)],
-                  state=DISABLED, relief=GROOVE)
+    btn3 = Button(middle_frame2, text="Zatwierdź nazwę", height=1, width=20, fg="black", state=DISABLED, relief=GROOVE,
+                  command=lambda: [btn3.config(state=DISABLED), get_name(en1.get()), en1.config(state=DISABLED),
+                                   ult_button.config(state=NORMAL)])
     btn3.pack(side=BOTTOM, padx=30, pady=5)
 
     # step 4
@@ -173,11 +231,17 @@ def main():
     #new_image = Label(right_frame, image=my_img)
     #new_image.pack(padx=5)
 
+    # Przycisk zatwierdzający
+
+    ult_button = Button(main_window, text="Generuj instrukcję", width=40, height=2, relief=GROOVE, state=DISABLED,
+                        command=lambda: [beginning_html(),  ending_html()])
+    ult_button.pack(side=BOTTOM, padx=30, pady=15)
+
     # inicjalizacja ramek
     upper_frame.pack(side=TOP, padx=10, pady=10, fill=X)
     middle_frame1.pack(side=TOP, padx=10, fill=X)
     middle_frame2.pack(side=TOP, padx=10, fill=X)
-    lower_frame.pack(side=TOP, padx=10, pady=10, fill=X)
+    lower_frame.pack(side=TOP, padx=10, fill=X)
 
     main_window.mainloop()
 
