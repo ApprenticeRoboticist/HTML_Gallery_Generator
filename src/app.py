@@ -1,4 +1,4 @@
-import os
+import os, time
 from tkinter import *
 from tkinter import messagebox, filedialog, scrolledtext
 from tkinter.ttk import Combobox
@@ -70,7 +70,7 @@ def beginning_html():
     <head>
     <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-2">
     <title>{title}</title>
-    <!-- Piotr Jan Adamiec  -->
+    <!-- The spell is: "Welcome to Uganda"  -->
     </head>
     <body style="font-family: Verdana; font-size: 10pt">
     <p><b><font face="Arial" size="7">{title}</font></b></p>
@@ -79,6 +79,7 @@ def beginning_html():
 
 
 def filling_html(list):
+    list = [int(i) for i in list] # zmiana typu na int konieczna do uzycia listy w petli for
     doc = open(f"{title}.html", 'a')
     ilosc_krokow = len(list)
     print(f"Ilość kroków w tej instrukcji wynosi: {ilosc_krokow}.")
@@ -90,7 +91,7 @@ def filling_html(list):
 
         if i == 1:
             doc.write(f"""  <p><b><font face="Arial" size="7">{i}</font></b></p>\n""")
-            for x in range(1, list[list_iter]+1):
+            for x in range(1, list[int(list_iter)]+1):
                 doc.write(f"""          <p><img border="1" src="{photo_count}.jpg" width="700"></p>\n""")
                 print(f"krok: {i} photo: {photo_count}")
                 photo_count += 1
@@ -234,7 +235,7 @@ def main():
     # Przycisk zatwierdzający
 
     ult_button = Button(main_window, text="Generuj instrukcję", width=40, height=2, relief=GROOVE, state=DISABLED,
-                        command=lambda: [beginning_html(),  ending_html()])
+                        command=lambda: [beginning_html(), filling_html(value_list), ending_html()])
     ult_button.pack(side=BOTTOM, padx=30, pady=15)
 
     # inicjalizacja ramek
