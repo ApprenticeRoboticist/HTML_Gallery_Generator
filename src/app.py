@@ -1,4 +1,5 @@
-import os, time
+import os
+import time
 from tkinter import *
 from tkinter import messagebox, filedialog, scrolledtext
 from tkinter.ttk import Combobox
@@ -39,8 +40,11 @@ def rename():
 def get_name(value):
     """Zbiera dane z okna wejscia w kroku 3 i przypisuje je do zmiennej globalnej title"""
     global title
-    title = value
-    print(title)
+    if len(value) <= 4:
+        messagebox.showinfo("Błąd", "Nazwa musi zawierac przynajmniej 5 znaków!")
+    else:
+        title = value
+        print(title)
 
 
 def add_value(chapter_list, value):
@@ -185,8 +189,7 @@ def main():
     en1.pack(side=RIGHT, padx=25, pady=5)
     # Button 3
     btn3 = Button(middle_frame2, text="Zatwierdź nazwę", height=1, width=20, fg="black", state=DISABLED, relief=GROOVE,
-                  command=lambda: [btn3.config(state=DISABLED), get_name(en1.get()), en1.config(state=DISABLED),
-                                   ult_button.config(state=NORMAL)])
+                  command=lambda: [get_name(en1.get()), ult_button.config(state=NORMAL)])
     btn3.pack(side=BOTTOM, padx=30, pady=5)
 
     # step 4
