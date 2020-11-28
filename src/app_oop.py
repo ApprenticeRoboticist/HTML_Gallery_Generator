@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
 
+# gonna remake this from scratch
 
 class CustomOpen(object):
     def __init__(self, filename):
