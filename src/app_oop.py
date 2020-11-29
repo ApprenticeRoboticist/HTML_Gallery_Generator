@@ -19,58 +19,54 @@ class CustomOpen(object):
     #contents = f.read()
 
 
-class App(Frame):
+class App:
+    def __init__(self, master):
+        master.title("HTML Photogallery Generator")
+        master.geometry("500x650+550+125")
+        master.resizable(width=False, height=False)
 
-    def __init__(self):
-        super().__init__()
+        # variables
+        self.folder_path = ""
 
-        # inicjalizacja zmiennych
-        self.e_message1 = StringVar()
+        # app frames
+        self.upper_frame = LabelFrame(master, text="Step 1", relief=GROOVE)
 
-        self.e_message2 = StringVar()
-        self.directory = os.getcwd()
-        # inicjalizacja ramki aplikacji
-        self.init_ui()
+        self.middle_frame1 = LabelFrame(master, text="Step 2", relief=GROOVE)
 
-    def init_ui(self):
+        self.middle_frame2 = LabelFrame(master, text="Step 3", relief=GROOVE)
+        self.middle2_mini_frame = LabelFrame(self.middle_frame2, relief=FLAT)
 
-        self.master.title("HTML Gallery Generator")
-        self.pack(fill=BOTH, expand=True)
+        self.lower_frame = LabelFrame(master, text="Step 4", relief=GROOVE)
+        self.lower_mini_frame1 = LabelFrame(self.lower_frame, relief=FLAT)
+        self.lower_mini_frame2 = LabelFrame(self.lower_frame, relief=FLAT)
 
-        lab1 = Label(self, text="Wprowadź scieżkę do folderu ze zdjęciami", fg="Blue", pady="10")
-        lab1.pack(side=TOP)
+        # step1 widgets
+        self.button1 = Button(self.upper_frame, text="Choose path to file", command=self.print_message, relief=GROOVE)
 
-        lab2 = Label(self, text=self.directory, fg="Blue", pady="10")
-        lab2.pack(side=BOTTOM)
+        self.label1 = Label(self.upper_frame, width=45, height=2, bg='SlateGray2', textvariable=self.folder_path)
 
-        entrybox1 = Entry(self, textvariable=self.directory, fg="Yellow", bg="Black", width=30)
-        entrybox1.pack(side=TOP)
-        entrybox1.focus()
-        self.directory = entrybox1.get()
+        # GUI init
+        self.ui_init()
 
-        btn1 = Button(self, text="Zmień scieżkę!", command=self.change_dir(), activeforeground="Red", activebackground="Pink")
-        btn1.pack()
+    def ui_init(self):
+        """Placing all widgets"""
+        self.button1.pack(padx=15, side=LEFT)
+        self.label1.pack(side=TOP, pady=7, padx=10)
 
-        #my_img = ImageTk.PhotoImage(Image.open("nosacz.jpg"))
-        #new_image = Label(image=my_img)
-        #new_image.pack()
+        self.upper_frame.pack(side=TOP, padx=10, pady=10, fill=X)
+        self.middle_frame1.pack(side=TOP, padx=10, fill=X)
+        self.middle_frame2.pack(side=TOP, padx=10, fill=X)
+        self.lower_frame.pack(side=TOP, padx=10, fill=X)
 
     def print_message(self):
-        message = self.e_message1.get()
+        message = "standard message"
         messagebox.showinfo("Błąd", message)
 
     def set_dir(self):
         pass
 
 
-
-def main():
-    root = Tk()
-    root.geometry("350x300+500+250")
-    root.resizable(width=False, height=False)
-    app = App()
-    root.mainloop()
-
-
 if __name__ == '__main__':
-    main()
+    root = Tk()
+    app = App(root)
+    root.mainloop()

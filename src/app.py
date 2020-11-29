@@ -3,7 +3,6 @@ import time
 from tkinter import *
 from tkinter import messagebox, filedialog, scrolledtext
 from tkinter.ttk import Combobox
-from PIL import ImageTk, Image
 
 folder_path = None
 title = None
@@ -229,11 +228,6 @@ def main():
     txt = scrolledtext.ScrolledText(lower_frame, width=50, height=12)
     txt.pack(side=TOP, padx=15, pady=10)
     txt.insert(INSERT, "Ilość zdjęć w poszczególnych krokach:")
-
-    # super motywujacy obrazek
-    #my_img = ImageTk.PhotoImage(Image.open("images/nosacz.jpg"))
-    #new_image = Label(right_frame, image=my_img)
-    #new_image.pack(padx=5)
 
     # Przycisk zatwierdzający
 
