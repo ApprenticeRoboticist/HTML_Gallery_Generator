@@ -1,7 +1,8 @@
 # HTML_photoGallery_Generator
 Simple Python program to automate and shorten the process of making HTML based robot-assembly instructions.
+![app_window](https://user-images.githubusercontent.com/51023622/100675574-7c00b000-3367-11eb-933b-66effab70262.PNG)
 
-# TO DO
+## TO DO
 
 1. Dodać przycisk generowania HTML:
 
@@ -11,5 +12,5 @@ Simple Python program to automate and shorten the process of making HTML based r
     2.1 Błąd braku wprowadzenia nazwy instrukcji -> zmienna title zawierajaca pusty string<br>
     
     
-# TO TEST
+## TO TEST
  

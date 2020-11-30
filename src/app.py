@@ -201,7 +201,7 @@ def main():
 
     # Combo button
     combo = Combobox(lower_mini_frame1)
-    combo['values'] = (1, 2, 3, 4, 5, 6, 7, 8)
+    combo['values'] = (1, 2, 3, 4, 5, 6, 7, 8, 9)
     combo.current(0)
     combo.pack(side=RIGHT, padx=25, pady=15)
 
