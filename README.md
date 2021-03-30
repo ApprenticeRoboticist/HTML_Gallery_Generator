@@ -17,7 +17,8 @@ This was my first serious python project which allowed me to practise such thing
 
 ![app_window](https://user-images.githubusercontent.com/51023622/100675574-7c00b000-3367-11eb-933b-66effab70262.PNG)
 ![app_window](https://user-images.githubusercontent.com/51023622/100675574-7c00b000-3367-11eb-933b-66effab70262.PNG)
-    
+<img src="https://your-image-url.type" width="300" height="450">
+
 ## Usage
 
 You can start the app by copying the source code and running it with IDE. 
