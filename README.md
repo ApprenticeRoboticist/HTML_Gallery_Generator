@@ -15,9 +15,7 @@ This was my first serious python project which allowed me to practise such thing
 
 ## App overview
 
-![app_window](https://user-images.githubusercontent.com/51023622/100675574-7c00b000-3367-11eb-933b-66effab70262.PNG)
-![app_window](https://user-images.githubusercontent.com/51023622/100675574-7c00b000-3367-11eb-933b-66effab70262.PNG)
-<img src="https://your-image-url.type" width="300" height="450">
+<img src="https://github.com/Daemiac/HTML_Gallery_Generator/blob/master/readme_images/HPG1.png" width="450" height="600"><img src="https://github.com/Daemiac/HTML_Gallery_Generator/blob/master/readme_images/HPG.png" width="450" height="600">
 
 ## Usage
 
