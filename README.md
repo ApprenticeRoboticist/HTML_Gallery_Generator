@@ -10,17 +10,28 @@ During my work as Lego Mindstorms instructor one of my resposibilities was inven
 ![](https://img.shields.io/badge/IDE-PyCharm-informational?style=flat-square&logo=Pycharm&logoColor=white&color=green)
 
 ### App overview
+Launching an app causes its main window to show up. The app consists of one main view divided by four sections called "steps" (fig. 1).
+<br><br>
+<img src="https://github.com/Daemiac/HTML_Gallery_Generator/blob/master/readme_images/HPG1.png" width="400" height="550">
+<br> *Fig. 1 - post start-up app's main window* <br><br>
+Each step represents one operation in whole algorithm of making an instruction:
+- the first step requires to choose folder of file's destination which should also contain photos needed to create instruction. If you don't choose a folder you cant proceed any further;
+- the second step gives an option to numerate the photos inside the chosen folder. Numeration of photos is crucial for further processing. If photos inside chosen folder are already numerated the messagebox which informs about that fact pops up;
+- the third step is naming the instruction file; 
+- the fourth step is responsible for creating instruction pattern. Each of instruction's steps contains one or more photos - it is up to user to choose the amount of steps and photos that build them;
 
-<img src="https://github.com/Daemiac/HTML_Gallery_Generator/blob/master/readme_images/HPG1.png" width="450" height="600"><img src="https://github.com/Daemiac/HTML_Gallery_Generator/blob/master/readme_images/HPG.png" width="450" height="600">
+After successful journey through all steps the *"Generate the instruction"* button becomes active (fig. 2).
+
+<img src="https://github.com/Daemiac/HTML_Gallery_Generator/blob/master/readme_images/HPG.png" width="400" height="550"><br>*Fig. 2 - the app ready to generate an instruction*
+
+Clicking this button generates a file in HTML format inside previously chosen folder which contains gallery of robot assembly steps!
 
 ### Launch
 
 You can start the app by copying the source code and running it with IDE. 
 Requirements:
 1. Python 3 (developed with 3.7 version)
-2. Tkinter, os and time python libraries installed (should be pre-installed with Python)
-
-Follow the steps from top to bottom.
+2. Tkinter, os and time python libraries installed;
 
 ### Things I learned
 This was my first serious python project which allowed me to practise such things as:
